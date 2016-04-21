@@ -42,40 +42,44 @@ class SketchAnomalyDetector(BaseAnomalyDetector):
         for ip in local_sketch_src.get_keys():
             table = local_sketch_src[ip]
             total = float(table['total'])
-	    
-	    print "Analysing IP:", ip
-	    print "Total Traffic Ratio:", total/local_sketch_src.n
+            if total == 0:
+                continue
+            print "Analysing IP:", ip
+            print "Total Traffic Ratio:", total/local_sketch_src.n
             if total/local_sketch_src.n > self.src_threshold['ip']:
-		print "Found Anomaly in Source IP traffic ratio"
+                print "Found Anomaly in Source IP traffic ratio"
                 return True
 
             for port in table:
                 if port == 'total':
                     continue
-		print "Traffic Ratio for Port ", port, ":", table[port]/total
+                print "Traffic Ratio for Port ", port, ":", table[port]/total
                 if table[port]/total > local_sketch_src['port']:
-		    print "Found Anomaly in Source Port Traffic Ratio"
+                    print "Found Anomaly in Source Port Traffic Ratio"
                     return True
-	print "Destination Analysis"
+
+        print "Destination Analysis"
         for ip in local_sketch_dst.get_keys():
             table = slocal_sketch_dst[ip]
             total = float(table['total'])
-	    
-	    print "Analysing IP:", ip
-	    print "Total Traffic Ratio:", total/local_sketch_dst.n
+            if total == 0:
+                continue
+            print "Analysing IP:", ip
+
+            print "Total Traffic Ratio:", total/local_sketch_dst.n
             if total / local_sketch_dst.n > self.dst_threshold['ip']:
-	        print "Found Anomaly in Destination IP traffic ratio"
+                print "Found Anomaly in Destination IP traffic ratio"
                 return True
 
             for port in table:
                 if port == 'total':
                     continue
-		print "Traffic Ratio for Port ", port, ":", table[port]/total
+                print "Traffic Ratio for Port ", port, ":", table[port]/total
                 if table[port] / total > self.dst_threshold['port']:
-		    print "Found Anomaly in Destination Port Traffic Ratio"
+                    print "Found Anomaly in Destination Port Traffic Ratio"
                     return True
-	
-	print "No anomaly found"
+
+        print "No anomaly found"
         return False
 
     @staticmethod

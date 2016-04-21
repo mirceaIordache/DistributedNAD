@@ -1,3 +1,6 @@
+# Based on the Count-Min Sketch developed by Rafael Carrascosa
+# Retrieved from: https://github.com/rafacarrascosa/countminsketch
+
 import hashlib
 
 
