@@ -86,3 +86,8 @@ ENV/
 
 # Rope project settings
 .ropeproject
+.idea/DistributedNAD.iml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/workspace.xml
+.idea/misc.xml
