@@ -19,11 +19,11 @@ class NetworkSwitches:
             f.close()
 
         def __getitem__(self, item):
-	    if item in self.switches:
-		return self.switches[item]
-	    else: 
-		return None
-	      
+            if item in self.switches:
+                return self.switches[item]
+            else:
+                return None
+
         def __len__(self):
             return len(self.switches)
 

@@ -35,7 +35,7 @@ class EntropyAnomalyDetector(BaseAnomalyDetector):
                 self.network_data.pop(data)
 
     def find_anomalies(self):
-	print "------------", RunningInstance.get_dpid(), "Entropy Run------------"
+        print "------------", RunningInstance.get_dpid(), "Entropy Run------------"
         current_data_image = copy.deepcopy(self.network_data)
         criterions = range(4)
         for i in criterions:
@@ -49,7 +49,7 @@ class EntropyAnomalyDetector(BaseAnomalyDetector):
                 sentinel = True
             self.known_entropy[i] = entropy
             if sentinel:
-	      return True
+                return True
         return False
 
     def _anomaly_from_entropy(self, entropy, criteria):

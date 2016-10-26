@@ -60,7 +60,7 @@ class SketchAnomalyDetector(BaseAnomalyDetector):
 
         print "Destination Analysis"
         for ip in local_sketch_dst.get_keys():
-            table = slocal_sketch_dst[ip]
+            table = local_sketch_dst[ip]
             total = float(table['total'])
             if total == 0:
                 continue

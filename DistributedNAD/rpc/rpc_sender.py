@@ -2,8 +2,6 @@ import urllib2
 import threading
 import json
 
-from rpc.api.rpc import RPC
-
 class RPCSender:
     def __init__(self):
         pass
@@ -14,13 +12,13 @@ class RPCSender:
     
     @staticmethod
     def _send(host, message):
-	url = "{}/{}".format(host.get_url(), message())
-	reply = json.loads(urllib2.urlopen(url).read())
-	print "Got reply", reply
-	print reply[0], reply[1]
+        url = "{}/{}".format(host.get_url(), message())
+        reply = json.loads(urllib2.urlopen(url).read())
+        print "Got reply", reply
+        print reply[0], reply[1]
 	
-	from main import DistributedDetector	
-	DistributedDetector.return_votes(reply[0], reply[1], host)
+        from main import DistributedDetector
+        DistributedDetector.return_votes(reply[0], reply[1], host)
 
 class RPCHost:
     def __init__(self, ip, port):
